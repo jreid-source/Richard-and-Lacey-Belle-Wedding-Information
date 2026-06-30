@@ -590,9 +590,130 @@
     .littleones-inner { flex-direction: column; gap: 1rem; }
     .color-swatches { gap: 2rem; }
   }
+
+  /* ── NAV ── */
+  .site-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 60px;
+    background: rgba(253,249,244,0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-sage);
+    transition: box-shadow 0.3s ease;
+  }
+  .site-nav.scrolled {
+    box-shadow: 0 2px 20px rgba(45,92,69,0.1);
+  }
+  .nav-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--juniper-dk);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    flex-shrink: 0;
+  }
+  .nav-brand span {
+    color: var(--sage);
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    list-style: none;
+  }
+  .nav-links a {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 0.4rem 0.75rem;
+    border-radius: 2px;
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+  .nav-links a:hover {
+    color: var(--juniper);
+    background: var(--sage-pale);
+  }
+  .nav-links a.active {
+    color: var(--juniper);
+  }
+  /* Hamburger */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--juniper);
+    transition: all 0.3s ease;
+  }
+  .nav-toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /* Mobile nav */
+  @media (max-width: 768px) {
+    .nav-toggle { display: flex; }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 60px; left: 0; right: 0;
+      flex-direction: column;
+      background: rgba(253,249,244,0.98);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-sage);
+      padding: 1rem 0;
+      gap: 0;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links a {
+      padding: 0.75rem 2rem;
+      font-size: 0.72rem;
+    }
+  }
+
+  /* Push hero down so nav doesn't overlap */
+  .hero { padding-top: 0; }
+  body { padding-top: 60px; }
+  .hero { margin-top: -60px; padding-top: 60px; min-height: calc(100svh); }
+
 </style>
 </head>
 <body>
+
+<!-- NAV -->
+<nav class="site-nav" id="site-nav">
+  <a href="#" class="nav-brand">Richard <span>&</span> Lacey Belle</a>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#details">Ceremony</a></li>
+    <li><a href="#hotels">Hotels</a></li>
+    <li><a href="#registry">Registry</a></li>
+    <li><a href="#photos">Photos</a></li>
+  </ul>
+</nav>
+
 
 <!-- HERO -->
 <section class="hero">
@@ -613,7 +734,7 @@
 </section>
 
 <!-- COUNTDOWN -->
-<section class="countdown-section">
+<section class="countdown-section" id="countdown">
   <p class="countdown-label">Days until forever begins</p>
   <div class="countdown-grid">
     <div class="countdown-unit">
@@ -639,7 +760,7 @@
 </section>
 
 <!-- PHOTOS -->
-<section class="photos-section">
+<section class="photos-section" id="photos">
   <div class="section-header">
     <h2 class="section-title">A few of our favorite moments</h2>
     <div class="section-rule"></div>
@@ -660,7 +781,7 @@
 </section>
 
 <!-- STORY -->
-<section class="story-section">
+<section class="story-section" id="story">
   <p class="eyebrow" style="text-align:center">Their story</p>
   <blockquote class="story-quote">
     "The best chapter of their love story yet!"
@@ -699,12 +820,13 @@
 </section>
 
 <!-- DETAILS -->
-<section class="details-section">
+<section class="details-section" id="details">
   <div class="details-inner">
     <div class="detail-block">
       <div class="detail-icon">💍</div>
       <p class="detail-title">The Ceremony</p>
-      <p class="detail-body">December 5th, 2026<br>Spring Hill, Tennessee<br>Details to follow</p>
+      <p class="detail-body">December 5th, 2026<br>3:30 PM · Spring Hill, Tennessee<br>Details to follow</p>
+      <p class="detail-body" style="margin-top:0.75rem;font-style:italic;font-size:0.78rem;opacity:0.85;">📵 We kindly ask that our ceremony be phone-free. Please be fully present with us — our photographer will capture every moment.</p>
     </div>
     <div class="detail-block">
       <div class="detail-icon">🥂</div>
@@ -720,7 +842,7 @@
 </section>
 
 <!-- HOTEL BLOCKS -->
-<section class="hotels-section">
+<section class="hotels-section" id="hotels">
   <div class="section-header">
     <p class="eyebrow" style="text-align:center">Hotel blocks</p>
     <h2 class="section-title">Places to Rest Your Head</h2>
@@ -732,18 +854,18 @@
       <p class="hotel-name">Spring Hill Block</p>
       <p class="hotel-body">
         A room block has been reserved for wedding guests in Spring Hill, just minutes from the venue.
-        Details and booking link coming soon — check back closer to the big day.
+        A room block has been reserved for wedding guests in Spring Hill, just minutes from the venue.
       </p>
-      <a href="#" class="hotel-btn">Details Coming Soon</a>
+      <a href="https://www.hilton.com/en/attend-my-event/bnaliht-bkw-05cefe46-269f-44fa-adec-ab73836264a3/" class="hotel-btn" target="_blank">Details Here</a>
     </div>
     <div class="hotel-card">
       <p class="hotel-tag">~30 min away</p>
       <p class="hotel-name">Nashville Block</p>
       <p class="hotel-body">
         For guests who'd like to make a weekend of it in Music City, a Nashville room block
-        is also being arranged. More information will be shared here soon.
+        has been reserved. Book your room with our group rate below.
       </p>
-      <a href="#" class="hotel-btn">Details Coming Soon</a>
+      <a href="https://www.marriott.com/event-reservations/reservation-link.mi?id=1771250743962&key=GRP&app=resvlink" class="hotel-btn" target="_blank">Details Here</a>
     </div>
   </div>
   <p class="hotel-note">Room block details will be updated here once finalized. Reach out to Richard or Belle directly with questions.</p>
@@ -767,7 +889,7 @@
 </section>
 
 <!-- REGISTRY -->
-<section class="registry-section">
+<section class="registry-section" id="registry">
   <p class="eyebrow" style="color:var(--sage-lt)">Gift registry</p>
   <h2 class="section-title">Help Us Feather Our Nest</h2>
   <div class="section-rule"></div>
@@ -784,7 +906,7 @@
     <div class="registry-card">
       <p class="registry-logo">Target</p>
       <p class="registry-tagline">target.com/registry</p>
-      <a href="https://www.target.com/gift-registry/find-a-registry/SAMPLE" class="registry-btn" target="_blank">View Registry</a>
+      <a href="https://www.target.com/gift-registry/gift-giver?registryId=95ae3f50-7401-11f1-87c9-bf84e564390c&type=WEDDING" class="registry-btn" target="_blank">View Registry</a>
     </div>
   </div>
 </section>
@@ -825,6 +947,27 @@
   }
   updateCountdown();
   setInterval(updateCountdown, 1000);
+
+  // Nav scroll shadow
+  const nav = document.getElementById('site-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 10);
+  });
+
+  // Mobile toggle
+  const toggle = document.getElementById('nav-toggle');
+  const links = document.getElementById('nav-links');
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('open');
+    links.classList.toggle('open');
+  });
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      toggle.classList.remove('open');
+      links.classList.remove('open');
+    });
+  });
+
 </script>
 </body>
 </html>
