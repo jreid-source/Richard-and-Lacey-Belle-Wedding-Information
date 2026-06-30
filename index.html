@@ -590,130 +590,9 @@
     .littleones-inner { flex-direction: column; gap: 1rem; }
     .color-swatches { gap: 2rem; }
   }
-
-  /* ── NAV ── */
-  .site-nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 2.5rem;
-    height: 60px;
-    background: rgba(253,249,244,0.92);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border-sage);
-    transition: box-shadow 0.3s ease;
-  }
-  .site-nav.scrolled {
-    box-shadow: 0 2px 20px rgba(45,92,69,0.1);
-  }
-  .nav-brand {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.05rem;
-    font-style: italic;
-    font-weight: 400;
-    color: var(--juniper-dk);
-    text-decoration: none;
-    letter-spacing: 0.03em;
-    flex-shrink: 0;
-  }
-  .nav-brand span {
-    color: var(--sage);
-  }
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    list-style: none;
-  }
-  .nav-links a {
-    display: block;
-    font-size: 0.68rem;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-decoration: none;
-    padding: 0.4rem 0.75rem;
-    border-radius: 2px;
-    transition: color 0.2s ease, background 0.2s ease;
-  }
-  .nav-links a:hover {
-    color: var(--juniper);
-    background: var(--sage-pale);
-  }
-  .nav-links a.active {
-    color: var(--juniper);
-  }
-  /* Hamburger */
-  .nav-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-  }
-  .nav-toggle span {
-    display: block;
-    width: 22px;
-    height: 1.5px;
-    background: var(--juniper);
-    transition: all 0.3s ease;
-  }
-  .nav-toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-  .nav-toggle.open span:nth-child(2) { opacity: 0; }
-  .nav-toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-
-  /* Mobile nav */
-  @media (max-width: 768px) {
-    .nav-toggle { display: flex; }
-    .nav-links {
-      display: none;
-      position: absolute;
-      top: 60px; left: 0; right: 0;
-      flex-direction: column;
-      background: rgba(253,249,244,0.98);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border-sage);
-      padding: 1rem 0;
-      gap: 0;
-    }
-    .nav-links.open { display: flex; }
-    .nav-links a {
-      padding: 0.75rem 2rem;
-      font-size: 0.72rem;
-    }
-  }
-
-  /* Push hero down so nav doesn't overlap */
-  .hero { padding-top: 0; }
-  body { padding-top: 60px; }
-  .hero { margin-top: -60px; padding-top: 60px; min-height: calc(100svh); }
-
 </style>
 </head>
 <body>
-
-<!-- NAV -->
-<nav class="site-nav" id="site-nav">
-  <a href="#" class="nav-brand">Lacey Belle <span>&</span> Richard</a>
-  <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
-    <span></span><span></span><span></span>
-  </button>
-  <ul class="nav-links" id="nav-links">
-    <li><a href="#story">Our Story</a></li>
-    <li><a href="#details">Ceremony</a></li>
-    <li><a href="#hotels">Hotels</a></li>
-    <li><a href="#registry">Registry</a></li>
-    <li><a href="#photos">Photos</a></li>
-  </ul>
-</nav>
-
 
 <!-- HERO -->
 <section class="hero">
@@ -734,7 +613,7 @@
 </section>
 
 <!-- COUNTDOWN -->
-<section class="countdown-section" id="countdown">
+<section class="countdown-section">
   <p class="countdown-label">Days until forever begins</p>
   <div class="countdown-grid">
     <div class="countdown-unit">
@@ -760,7 +639,7 @@
 </section>
 
 <!-- PHOTOS -->
-<section class="photos-section" id="photos">
+<section class="photos-section">
   <div class="section-header">
     <h2 class="section-title">A few of our favorite moments</h2>
     <div class="section-rule"></div>
@@ -781,7 +660,7 @@
 </section>
 
 <!-- STORY -->
-<section class="story-section" id="story">
+<section class="story-section">
   <p class="eyebrow" style="text-align:center">Their story</p>
   <blockquote class="story-quote">
     "The best chapter of their love story yet!"
@@ -820,7 +699,7 @@
 </section>
 
 <!-- DETAILS -->
-<section class="details-section" id="details">
+<section class="details-section">
   <div class="details-inner">
     <div class="detail-block">
       <div class="detail-icon">💍</div>
@@ -842,7 +721,7 @@
 </section>
 
 <!-- HOTEL BLOCKS -->
-<section class="hotels-section" id="hotels">
+<section class="hotels-section">
   <div class="section-header">
     <p class="eyebrow" style="text-align:center">Hotel blocks</p>
     <h2 class="section-title">Places to Rest Your Head</h2>
@@ -889,7 +768,7 @@
 </section>
 
 <!-- REGISTRY -->
-<section class="registry-section" id="registry">
+<section class="registry-section">
   <p class="eyebrow" style="color:var(--sage-lt)">Gift registry</p>
   <h2 class="section-title">Help Us Feather Our Nest</h2>
   <div class="section-rule"></div>
@@ -947,27 +826,31 @@
   }
   updateCountdown();
   setInterval(updateCountdown, 1000);
-
-  // Nav scroll shadow
-  const nav = document.getElementById('site-nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 10);
-  });
-
-  // Mobile toggle
-  const toggle = document.getElementById('nav-toggle');
-  const links = document.getElementById('nav-links');
-  toggle.addEventListener('click', () => {
-    toggle.classList.toggle('open');
-    links.classList.toggle('open');
-  });
-  links.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      toggle.classList.remove('open');
-      links.classList.remove('open');
-    });
-  });
-
+</script>
+<script>
+  function updateCountdown() {
+    // Dec 5 2026 3:30 PM CST = 21:30 UTC
+    const wedding = new Date('2026-12-05T21:30:00Z');
+    const now = new Date();
+    const diff = wedding - now;
+    if (diff <= 0) {
+      document.querySelector('.countdown-section').innerHTML = '<p style="font-family:Cormorant Garamond,serif;font-size:2rem;color:var(--ivory);font-style:italic;text-align:center">Today is the day! 🎉</p>';
+      return;
+    }
+    // Calendar-accurate months (not divide-by-30)
+    let months = (wedding.getFullYear() - now.getFullYear()) * 12 + (wedding.getMonth() - now.getMonth());
+    if (now.getDate() > wedding.getDate()) months--;
+    const afterMonths = new Date(now.getFullYear(), now.getMonth() + months, now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds());
+    const days = Math.floor((wedding - afterMonths) / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    document.getElementById('cd-months').textContent = String(months).padStart(2,'0');
+    document.getElementById('cd-days').textContent = String(days).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+    document.getElementById('cd-mins').textContent = String(mins).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
 </script>
 </body>
 </html>
